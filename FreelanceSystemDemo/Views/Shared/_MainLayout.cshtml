@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <!-- The header of the project-->
+        <div class="container-fluid p-0" id="nav-bar">
+            <!--Navbar-->          
+            <nav class="navbar navbar-expand-lg" id="nav-color">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><img src="~/Images/LogoOnly.png" alt="Logo" class="nav-logo"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#top">
+                                    Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Sign UP</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Do You Have A Question ?
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Contact US</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">Blog</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li><a class="dropdown-item" href="#">About US</a></li>
+                                </ul>
+                            </li>
+                            @*<li class="nav-item">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                            </li>*@
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn" id="searchbtn" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+    <!-- Social media section -->
+    <section id="social-media">
+        <div class="container text-center">
+            <p>Find us on social media</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/"><img src="~/Images/Facebookicon.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/"><img src="~/Images/Instagramicon.png" alt="Instagram"></a>
+                <a href="https://twitter.com/"><img src="~/Images/Twittericon.png" alt="Twitter"></a>
+                <a href="https://whatsapp.com/"><img src="~/Images/Whatsappicon.png" alt="Whatsapp"></a>
+                <a href="https://www.linkedin.com/"><img src="~/Images/Linkedinicon.png" alt="Linkedin"></a>
+                <a href="https://www.snapchat.com/"><img src="~/Images/Snapchaticon.png" alt="Snapchat"></a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <section id="footer">
+            <img src="images/Black_Sport_Car.png" alt="" class="footer-img">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-box">
+                        <img src="~/Images/Logo.png" alt="logo">
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    </div>
+                    <div class="col-md-4 footer-box">
+                        <p><b>Have a Questions?</b></p>
+                        <!-- our address // add icon-->
+                        <p>Egypt First settlement, Cairo</p><!-- <i class="fa fa-map-maker"></i> to add icon-->
+                        <p>01019466288</p>
+                        <p>aya.mohamed200077@yahoo.com</p>
+                    </div>
+                    <div class="col-md-4 footer-box">
+                        <p><b>SUBSCRIBE NEWSLETTER</b></p>
+                        <input type="email" class="form-control" placeholder="Your Email">
+                        <button type="button" class="btn btn-primary">Subscribe</button>
+                    </div>
+                </div>
+                <hr>
+                <p class="copyright">Copyright ©2021 All rights reserved | This template is made by AK</p>
+            </div>
+        </section>
+    </footer>
+
+
+    <!-- Footer -->
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+
+    <!-- To connect popper (for drop down menu) file -->
+    <script src="~/Scripts/popper.min.js"></script>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

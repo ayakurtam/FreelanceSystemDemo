@@ -1,0 +1,56 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    color: azure;
+}
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/frontbackcars.png);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /*justify-content: center;*/
+    /*min-height: 100vh;*/
+    font-family: sans-serif;
+}
+#nav-bar 
+{
+    position: unset;
+    margin-top: 20px;
+    top: 0;
+    z-index: 10;
+}
+#nav-color
+{
+    background-image: linear-gradient(to right, #000000, #450558,#8c1cd6);
+}
+.nav-logo
+{
+    height: 50px;
+    width: auto;
+}
+.nav-link
+{
+    color: #fff;
+}
+/* To add colored background to the navbar menu 
+.navbar
+{
+    background-image: ;
+}
+*/
+
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    content: "";
+    background: no-repeat center center;
+    background-size: auto;
+    background-size: 100% 100%;
+    background-color: azure;
+
+}

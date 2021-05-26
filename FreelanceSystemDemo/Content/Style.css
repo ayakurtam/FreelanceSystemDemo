@@ -1,0 +1,290 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 12, 2020, 5:37:51 PM
+    Author     : Aya Kurtam
+*/
+/* colors of the logo
+    purple: #51127f
+    pink: #d70a84
+*/
+* {
+    margin: 0;
+    padding: 0;
+    color: azure;
+    font-size: 23px;
+}
+
+@font-face{
+    font-family:myFont;
+    src:url('font/GE_SS_Two_Bold.otf')
+}
+@font-face{
+    font-family:myFont2;
+    src:url('font/DroidKufi-Regular.ttf')
+}
+
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../Images/Background.jpg);
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: sans-serif;
+}
+
+#nav-bar {
+    position: unset;
+    margin-top: 20px;
+    top: 0;
+    z-index: 10;
+}
+
+#nav-color {
+    background-image: linear-gradient(to right, #000000, #450558, #8c1cd6);
+}
+
+/* color of the font of the dropdown link*/
+#navbarDropdown {
+    color: whitesmoke;
+}
+#navbarDropdown:hover {
+    color: #d70a84;
+}
+
+.nav-logo {
+    height: 60px;
+    width: auto;
+}
+
+/* color of the links in the navbar*/
+.nav-link {
+    color: whitesmoke;
+}
+
+.nav-item a:hover {
+    color: #d70a84;
+}
+
+/* color of the toggler button*/
+.navbar-toggler {
+    background-image: linear-gradient(to right, #000000, #51127f, #d70a84);
+}
+
+.navbar-toggler .navbar-toggler-icon {
+    color: white;
+}
+
+.dropdown-menu {
+    background-image: linear-gradient(to right, #000000, #51127f, #d70a84);
+    text-align: center;
+}
+
+.dropdown-menu a {
+    color:whitesmoke;
+}
+
+.dropdown-menu :hover .dropdown-item {
+    display: block;
+}
+
+.dropdown-menu :hover  .dropdown-item{
+    background-color: transparent;
+}
+
+.btn {
+    color: whitesmoke;
+    background-color: transparent;
+    font-size: 25px;
+}
+
+.btn:hover {
+    background-color:black;
+    color: #d70a84;
+}
+
+.d-flex .form-control {
+    background-color: transparent;
+    color: white;
+    border-color: #d70a84;
+    font-family: sans-serif;
+    text-align:center;
+    
+}
+
+.d-flex .form-control input {
+    color:white;
+}
+
+/* social media section */
+#social-media {
+    background-image: linear-gradient(to right, #090e13, #000000);
+    padding: 100px 0;
+}
+
+#social-media p {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+
+.social-icons img {
+    width: 60px;
+    transition: 0.5s;
+}
+
+.social-icons a:hover img {
+    transform: translateY(-10px);
+}
+
+/* Footer Section */
+
+#footer {
+    background-image: linear-gradient(to right, #090e13, #000000);
+    color: #fff;
+}
+
+.footer-img {
+    width: 100%;
+}
+
+.footer-box {
+    padding: 20px;
+}
+
+.footer-box img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+/* for icon shape 
+.footer-box .fa
+{
+    margin-right: 8px;
+    font-size: 25px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 2px;
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+}
+*/
+.footer-box .form-control {
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 25px;
+    max-width: 250px;
+}
+
+.footer-box .btn-primary {
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 30px;
+    background-image: linear-gradient(to right, #a517ba, #5f1782);
+}
+
+hr {
+    background-color: #fff;
+}
+
+.copyright {
+    margin-bottom: 0;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+
+/*
+
+button {
+    position: relative;
+    display: inline-block;
+    padding: 15px 30px;
+    color: #2196f3;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-decoration: none;
+    font-size: 24px;
+    overflow: hidden;
+    transition: 0.2s;
+
+}
+
+button:hover {
+    color: #255784;
+    background: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    transition-delay: 1s;
+}
+
+button span {
+    position: absolute;
+    display: block;
+
+}
+
+button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2196f3);
+}
+
+button:hover span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #2196f3);
+}
+
+button:hover span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #2196f3);
+}
+
+button:hover span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #2196f3);
+}
+
+button:hover span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+
+*/
