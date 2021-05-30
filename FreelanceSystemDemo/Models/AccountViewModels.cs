@@ -69,6 +69,10 @@ namespace WebApplication1.Models
         public string UserName { get; set; }
 
         [Required]
+        [Display(Name = "Gender")]
+        public string UserType { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
