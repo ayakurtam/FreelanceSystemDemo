@@ -12,7 +12,7 @@
         <!-- The header of the project-->
         <div class="container-fluid p-0" id="nav-bar">
             <!--Navbar-->          
-            <nav class="navbar navbar-expand-lg" id="nav-color">
+            <nav class="navbar navbar-expand-lg fixed-top" id="nav-color">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#"><img src="~/Images/LogoOnly.png" alt="Logo" class="nav-logo"></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,12 +26,6 @@
                                     Home
                                     <span class="sr-only">(current)</span>
                                 </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Sign UP</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -48,6 +42,7 @@
                             @*<li class="nav-item">
                                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                             </li>*@
+                            @Html.Partial("_Login")
                         </ul>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -60,7 +55,11 @@
     </header>
 
     <main>
-        @RenderBody()
+        <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
     </main>
     <!-- Social media section -->
     <section id="social-media">
