@@ -17,7 +17,7 @@ namespace FreelanceSystemDemo.Models
         [Display(Name = "Job Description")]
         public string CategoryDescription { get; set; }
 
-        // Many to one  Relation
-        public ICollection<Job> Jobs { get; set; }
+        // Many to one  Relation  // virtual for lazy loading
+        public virtual ICollection<Job> Jobs { get; set; }
     }
 }

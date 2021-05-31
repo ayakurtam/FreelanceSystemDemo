@@ -33,7 +33,7 @@ namespace FreelanceSystemDemo.Controllers
             Job job = db.Jobs.Find(id);
             if (job == null)
             {
-                return HttpNotFound();
+                return HttpNotFound(); // error 404
             }
             return View(job);
         }
