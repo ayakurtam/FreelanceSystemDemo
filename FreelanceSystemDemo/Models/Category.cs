@@ -16,5 +16,8 @@ namespace FreelanceSystemDemo.Models
         [Required]
         [Display(Name = "Job Description")]
         public string CategoryDescription { get; set; }
+
+        // Many to one  Relation
+        public ICollection<Job> Jobs { get; set; }
     }
 }

@@ -32,5 +32,7 @@ namespace WebApplication1.Models
         }
 
         public System.Data.Entity.DbSet<FreelanceSystemDemo.Models.Category> Categories { get; set; }
+
+        public System.Data.Entity.DbSet<FreelanceSystemDemo.Models.Job> Jobs { get; set; }
     }
 }
