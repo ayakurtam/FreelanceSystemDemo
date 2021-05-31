@@ -92,9 +92,16 @@ namespace FreelanceSystemDemo.Controllers
         {
             if (ModelState.IsValid)
             {
-                string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
-                upload.SaveAs(path); // file is saved on server only
-                job.JobImage = upload.FileName; // assign the imaged to the variable JobImage
+                string oldPath = Path.Combine(Server.MapPath("~/Uploads"), job.JobImage);
+
+                if (upload != null)
+                {
+                    System.IO.File.Delete(oldPath); // to delete the old photo
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path); // file is saved on server only
+                    job.JobImage = upload.FileName; // assign the image to the variable JobImage
+                }
+                
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
