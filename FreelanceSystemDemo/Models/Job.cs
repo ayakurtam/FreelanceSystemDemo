@@ -6,6 +6,7 @@ using System.Web;
 
 namespace FreelanceSystemDemo.Models
 {
+    // Job Details
     public class Job
     {
         public int Id { get; set; }
