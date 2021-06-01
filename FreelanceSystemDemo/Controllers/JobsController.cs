@@ -12,6 +12,7 @@ using System.IO;
 
 namespace FreelanceSystemDemo.Controllers
 {
+    [Authorize(Roles = "Admins")]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

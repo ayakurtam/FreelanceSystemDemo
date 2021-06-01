@@ -9,6 +9,7 @@ using WebApplication1.Models;
 
 namespace FreelanceSystemDemo.Controllers
 {
+    [Authorize]
     public class RolesController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext(); // to connect with database
