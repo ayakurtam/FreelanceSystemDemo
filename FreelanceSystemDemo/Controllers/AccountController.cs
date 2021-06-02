@@ -140,8 +140,8 @@ namespace WebApplication1.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            // User Gender
-            ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Administrator")).ToList(),"Name","Name");
+            // User Role
+            ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(),"Name","Name");
             return View();
         }
 
@@ -152,10 +152,11 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(), "Name", "Name");
+
             if (ModelState.IsValid)
             {
-                ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Administrator")).ToList(), "Name", "Name");
-                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email, UserType = model.UserType};
+                var user = new ApplicationUser { UserName = model.UserName, UserFirstName = model.UserFirstName, UserLastName = model.UserLastName, PhoneNumber = model.PhoneNumber, UserType = model.UserType, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

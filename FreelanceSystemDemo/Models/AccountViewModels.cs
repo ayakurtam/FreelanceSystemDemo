@@ -64,12 +64,25 @@ namespace WebApplication1.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "User Name")]
+        [Display(Name = "UserName")]
         public string UserName { get; set; }
 
         [Required]
-        [Display(Name = "Gender")]
+        [Display(Name = "Role")]
         public string UserType { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string UserFirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string UserLastName { get; set; }
+
+        [Required]
+        [Phone]
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
 
         [Required]
         [EmailAddress]
@@ -116,4 +129,6 @@ namespace WebApplication1.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+
 }

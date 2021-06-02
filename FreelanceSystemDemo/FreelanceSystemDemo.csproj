@@ -200,6 +200,14 @@
     <Compile Include="Migrations\202106011914081_ApplyForJobs.Designer.cs">
       <DependentUpon>202106011914081_ApplyForJobs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106021455311_AddFirstLastName.cs" />
+    <Compile Include="Migrations\202106021455311_AddFirstLastName.designer.cs">
+      <DependentUpon>202106021455311_AddFirstLastName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106021637358_AddColumnsToJobs.cs" />
+    <Compile Include="Migrations\202106021637358_AddColumnsToJobs.designer.cs">
+      <DependentUpon>202106021637358_AddColumnsToJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplyForJob.cs" />
@@ -278,11 +286,6 @@
     <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
-    <Content Include="Views\Jobs\Create.cshtml" />
-    <Content Include="Views\Jobs\Delete.cshtml" />
-    <Content Include="Views\Jobs\Details.cshtml" />
-    <Content Include="Views\Jobs\Edit.cshtml" />
-    <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\Create.cshtml" />
     <Content Include="Views\Roles\Details.cshtml" />
@@ -291,6 +294,11 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Apply.cshtml" />
     <Content Include="Views\Home\GetJobsByUser.cshtml" />
+    <Content Include="Views\Jobs\Create.cshtml" />
+    <Content Include="Views\Jobs\Delete.cshtml" />
+    <Content Include="Views\Jobs\Details.cshtml" />
+    <Content Include="Views\Jobs\Edit.cshtml" />
+    <Content Include="Views\Jobs\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -317,6 +325,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106011914081_ApplyForJobs.resx">
       <DependentUpon>202106011914081_ApplyForJobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021455311_AddFirstLastName.resx">
+      <DependentUpon>202106021455311_AddFirstLastName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106021637358_AddColumnsToJobs.resx">
+      <DependentUpon>202106021637358_AddColumnsToJobs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

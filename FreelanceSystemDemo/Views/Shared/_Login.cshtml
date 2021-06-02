@@ -6,12 +6,12 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
     {
             @Html.AntiForgeryToken()
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" style="column-gap:10px; margin-left:10px;">
                 <li>
-                    @Html.ActionLink("Hello:" + User.Identity.GetUserName(), "Index", "Manage")
+                    @Html.ActionLink("Hello: " + User.Identity.GetUserName(), "Index", "Manage", new { @class = "btn btn-default btn-danger btn-dark", @style = "font-size:16px;"})
                 </li>
                 <li>
-                    <a  href="javascript:document.getElementById('logoff').submit()">Log Out</a>
+                    <a class="btn btn-default btn-dark" style="font-size:16px;" href="javascript:document.getElementById('logoff').submit()">Log Out</a>
                 </li>
             </ul>
     }
@@ -20,12 +20,12 @@
 
 else
 {
-<ul class="nav navbar-nav navbar-right">
+<ul class="nav navbar-nav navbar-right" style="column-gap:10px;">
     <li class="nav-item">
-        <a class="nav-link" href="~/Account/Login">Login</a>
+        <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Login">Login</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="~/Account/Register">Sign UP</a>
+        <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Register">Register</a>
     </li>
 </ul>
 

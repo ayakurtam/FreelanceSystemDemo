@@ -12,18 +12,19 @@
 
 @foreach (var item in Model) // to view all job categories
 {
-    <div class="panel panel-default" style="padding:15px;">
+    <div class="panel panel-default" style="margin:60px;">
         <h1 class="panel-heading">@Html.DisplayFor(modelItem => item.CategoryName)</h1>
-        <h5>@Html.DisplayFor(modelItem => item.CategoryDescription)</h5>
-        <div class="row">
+        <h6>@Html.DisplayFor(modelItem => item.CategoryDescription)</h6>
+        <div class="col">
             @foreach (var subItem in item.Jobs) // to view jobs inside each category
             {
-                <div class="col-md-3 thumbnail" style="margin-left:20px;margin-bottom:30px;">
-                    <img src="~/Uploads/@subItem.JobImage" />
-                    <h3>@Html.DisplayFor(modelItem => subItem.JobTitle)</h3>
-                    <h5>@Html.DisplayFor(modelItem => subItem.JobContent)</h5>
-                    @Html.ActionLink("Details", "Details", new { JobId = subItem.Id }, new { @class="btn btn-primary"})
-                </div>
+            <div class="col-md" style="margin-bottom:50px;">
+                <img src="~/Uploads/@subItem.JobImage" class="thumbnail" style="width:350px; height:350px; border:solid; border-color:black;" />
+                <h3>@Html.DisplayFor(modelItem => subItem.JobTitle)</h3>
+                <hr / style="width: 50%">
+                <p>@Html.DisplayFor(modelItem => subItem.JobContent)</p>
+                @Html.ActionLink("Details", "Details", new { JobId = subItem.Id }, new { @class = "btn btn-primary" })
+            </div>
             }
         </div>
     </div>

@@ -21,6 +21,7 @@ namespace FreelanceSystemDemo.Controllers
         public ActionResult Index()
         {
             var jobs = db.Jobs.Include(j => j.Category);
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
             return View(jobs.ToList());
         }
 
@@ -34,7 +35,7 @@ namespace FreelanceSystemDemo.Controllers
             Job job = db.Jobs.Find(id);
             if (job == null)
             {
-                return HttpNotFound(); // error 404
+                return HttpNotFound();
             }
             return View(job);
         }
@@ -42,6 +43,7 @@ namespace FreelanceSystemDemo.Controllers
         // GET: Jobs/Create
         public ActionResult Create()
         {
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName");
             return View();
         }
@@ -51,7 +53,7 @@ namespace FreelanceSystemDemo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Job job, HttpPostedFileBase upload)
+        public ActionResult Create( Job job , HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +65,7 @@ namespace FreelanceSystemDemo.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
@@ -80,6 +82,7 @@ namespace FreelanceSystemDemo.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
@@ -89,7 +92,7 @@ namespace FreelanceSystemDemo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Job job, HttpPostedFileBase upload)
+        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobContent,JobImage,JobType,JobBudget,NumberOfProposal,CategoryId")] Job job , HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -102,11 +105,12 @@ namespace FreelanceSystemDemo.Controllers
                     upload.SaveAs(path); // file is saved on server only
                     job.JobImage = upload.FileName; // assign the image to the variable JobImage
                 }
-                
+
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
