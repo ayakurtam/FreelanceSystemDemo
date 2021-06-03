@@ -1,14 +1,12 @@
 ﻿@model FreelanceSystemDemo.Models.Job
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Job Details";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2 class="col-md-12">Job Details</h2>
-
 <div class="col-md-12">
-    <h4>Job</h4>
+    <h4>@ViewBag.Title</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -40,14 +38,40 @@
         </dt>
 
         <dd>
-            <img src="~/Uploads/@Html.DisplayFor(model => model.JobImage)"
+            <img src="~/Uploads/@Html.DisplayFor(model=>model.JobImage)"
                  class="thumbnail"
-                 style="width:128px; height:128px;" />
+                 style="width:200px; height:200px;" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.JobBudget)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobBudget)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NumberOfProposal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NumberOfProposal)
         </dd>
 
     </dl>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Apply to this", "Apply", new { id = Model.Id }, new { @class = "btn btn-danger" }) |
+        @Html.ActionLink("Back to Home", "Index",null, new { @class = "btn btn-default" })
+    </div>
+
+
 </div>
-<p>
-    @Html.ActionLink("Apply to this", "Apply", new { id = Model.Id }, new { @class="btn btn-success"}) |
-    @Html.ActionLink("Back to Home", "Index", new { @class = "btn btn-default" })
-</p>

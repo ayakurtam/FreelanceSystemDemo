@@ -6,7 +6,7 @@
 }
 
 
-<div>
+<div style="width:inherit;">
     <h4>@ViewBag.Title</h4>
     <hr />
     <dl class="dl-horizontal">
@@ -66,6 +66,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.NumberOfProposal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PublishDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PublishDate)
         </dd>
 
     </dl>

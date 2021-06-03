@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using WebApplication1.Models;
 
 namespace FreelanceSystemDemo.Models
 {
@@ -27,11 +28,15 @@ namespace FreelanceSystemDemo.Models
 
         [DisplayName("Number Of Proposal")]
         public int NumberOfProposal { get; set; }
-
+        
         // one to many Relation
         [DisplayName("Job Type")]
         public int CategoryId { get; set; }
+        public string UserId { get; set; }
+
+        public DateTime PublishDate { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

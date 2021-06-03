@@ -3,41 +3,39 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>ApplyForJob</h4>
-
-        <div>
-            @{ 
-                if (ViewBag.Result != null)
-                {
-                <h3>@ViewBag.Result</h3>
+<div style="width:inherit;">
+    <h4>@ViewBag.Title</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            <div>
+                @{
+                    if (ViewBag.Result != null)
+                    {
+                        <h6>@ViewBag.Result</h6>
+                    }
                 }
-            }
-        </div>
-
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.Label("Message", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextArea("Message", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessage("Message", "", new { @class = "text-danger" })
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Confirm" class="btn btn-default" />
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.Label("Message", htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.TextArea("Message", new { @class = "form-control", @style = "color:black;" })
+                    @Html.ValidationMessage("Message", "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-    </div>
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
+            <div class="form-actions no-color col-md">
+                <input type="submit" value="Confirm" class="btn btn-default btn-dark" style="font-size:18px" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default btn-danger", @style = "font-size:18px" })
+            </div>
+
+
+        </div>
+    }
+
+
 </div>

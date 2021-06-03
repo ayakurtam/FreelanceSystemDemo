@@ -9,10 +9,12 @@ using System.Web.Mvc;
 using FreelanceSystemDemo.Models;
 using WebApplication1.Models;
 using System.IO;
+using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace FreelanceSystemDemo.Controllers
 {
-    [Authorize(Roles = "Admins")]
+    [Authorize]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -61,6 +63,9 @@ namespace FreelanceSystemDemo.Controllers
                 string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                 upload.SaveAs(path); // file is saved on server only
                 job.JobImage = upload.FileName; // assign the imaged to the variable JobImage
+                job.PublishDate = DateTime.Now;
+                job.UserId = User.Identity.GetUserId();
+                job.NumberOfProposal = 0;
                 db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -92,11 +97,14 @@ namespace FreelanceSystemDemo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,JobTitle,JobContent,JobImage,JobType,JobBudget,NumberOfProposal,CategoryId")] Job job , HttpPostedFileBase upload)
+        public ActionResult Edit(Job job , HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+
+
                 string oldPath = Path.Combine(Server.MapPath("~/Uploads"), job.JobImage);
+
 
                 if (upload != null)
                 {
@@ -104,8 +112,12 @@ namespace FreelanceSystemDemo.Controllers
                     string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
                     upload.SaveAs(path); // file is saved on server only
                     job.JobImage = upload.FileName; // assign the image to the variable JobImage
+
                 }
 
+
+                
+                
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

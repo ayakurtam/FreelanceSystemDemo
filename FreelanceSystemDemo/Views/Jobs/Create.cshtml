@@ -6,86 +6,127 @@
 }
 
 
-<div>
+<div style="width:inherit;">
     <h2>@ViewBag.Title</h2>
     @using (Html.BeginForm("Create", "Jobs", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.EditorFor(model => model.JobContent, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    <input type="file" name="upload" />
-                    @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.DropDownList("JobType", null, new { @class = "form-control" })
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.JobBudget, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.EditorFor(model => model.JobBudget, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.JobBudget, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.NumberOfProposal, htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.EditorFor(model => model.NumberOfProposal, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.NumberOfProposal, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md" })
-                <div class="col-md">
-                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md">
-
-                </div>
-            </div>
-
-            <div class="form-actions no-color">
-                <input type="submit" value="Create" class="btn btn-default" /> |
-                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
-            </div>
-
-
-
-
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.JobImage)
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
         </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            @Html.EditorFor(model => model.JobContent, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            <input type="file" name="upload" id="myImage" />
+            @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            @Html.DropDownList("JobType", null, new { @class = "form-control" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.JobBudget, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            @Html.EditorFor(model => model.JobBudget, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.JobBudget, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NumberOfProposal, htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+           <h6>0</h6>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md" })
+        <div class="col-md">
+            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
+        <span id="View-err">
+
+        </span>
+    </div>
+
+
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Create" class="btn btn-default" id="save" /> |
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+
+
+
+
+</div>
     }
 
 </div>
+
+
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                //Check if the input is Empty
+                if ($("#myImage").val() == "") {
+                    $("#error-div").fadeIn();
+                    $("#View-err").append("Please choose photo");
+                    return false;
+                }
+
+                if ($("#myImage").val() != "") {
+                    //Check if the Image extension is valid
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtensions = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(extensionImg, validExtensions) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose photo with valid extension");
+                        return false;
+                    }
+                    //Check if the Image Size is valid (2 mb)
+                    var myFileSize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myFileSize > 2) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose a photo with size lessa than 2 MB");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}

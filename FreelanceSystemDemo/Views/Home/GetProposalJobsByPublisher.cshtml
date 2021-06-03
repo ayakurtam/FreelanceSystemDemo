@@ -1,0 +1,48 @@
+﻿@model IEnumerable<FreelanceSystemDemo.Models.ApplyForJob>
+
+@{
+    ViewBag.Title = "GetJobsByPublisher";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div style="width:inherit">
+    <h2>Jobs You Published</h2>
+    <table class="table table-bordered table-hover">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.job.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.user.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplyDate)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.job.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.user.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Message)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplyDate)
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+    </div>
+</div>

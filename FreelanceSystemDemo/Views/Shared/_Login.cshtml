@@ -1,32 +1,78 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@using WebApplication1.Models;
 
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoff" }))
     {
-            @Html.AntiForgeryToken()
-            <ul class="nav navbar-nav navbar-right" style="column-gap:10px; margin-left:10px;">
-                <li>
-                    @Html.ActionLink("Hello: " + User.Identity.GetUserName(), "Index", "Manage", new { @class = "btn btn-default btn-danger btn-dark", @style = "font-size:16px;"})
-                </li>
-                <li>
-                    <a class="btn btn-default btn-dark" style="font-size:16px;" href="javascript:document.getElementById('logoff').submit()">Log Out</a>
-                </li>
-            </ul>
+
+        var db = new ApplicationDbContext();
+        var UserID = User.Identity.GetUserId();
+        var CurrentUser = db.Users.Where(a => a.Id == UserID).SingleOrDefault();
+
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right" style="column-gap:10px; margin-left:10px;">
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle btn btn-dark" style="font-size:16px; height:40px; color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Hello: @CurrentUser.UserName
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    @if (CurrentUser.UserType == "Admins")
+                    {
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Users Page</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Jobs/Index">Posts Page</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Posts Requests</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Roles/Index">Roles Page</a></li>
+
+                    }
+                    else if (CurrentUser.UserType == "Client")
+                    {
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Jobs/Create">Create New Post</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Home/GetPublishedJobsByUser">My Posts</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Home/GetProposalJobsByPublisher">Received Proposals</a></li>
+
+                    }
+                    else if (CurrentUser.UserType == "Freelancer")
+                    {
+                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Home/GetAppliedJobsByUser">My Proposals</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Saved Jobs</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="~/Home/Search">Filter Search</a></li>
+                    }
+                </ul>
+            </li>
+
+            <li>
+                <a class="btn btn-default btn-dark" style="font-size:16px;" href="javascript:document.getElementById('logoff').submit()">Log Out</a>
+            </li>
+        </ul>
     }
 
 }
 
 else
 {
-<ul class="nav navbar-nav navbar-right" style="column-gap:10px;">
-    <li class="nav-item">
-        <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Login">Login</a>
-    </li>
-    <li class="nav-item">
-        <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Register">Register</a>
-    </li>
-</ul>
+    <ul class="nav navbar-nav navbar-right" style="column-gap:10px;">
+        <li class="nav-item">
+            <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Login">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="btn btn-default btn-dark nav-link" style="font-size:16px;" href="~/Account/Register">Register</a>
+        </li>
+    </ul>
 
 }

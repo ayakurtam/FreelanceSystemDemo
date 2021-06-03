@@ -1,0 +1,45 @@
+﻿@model FreelanceSystemDemo.Models.ApplyForJob
+
+@{
+    ViewBag.Title = "Details Of Job";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div>
+    <h4>@ViewBag.Title</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.job.JobTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.job.JobTitle)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApplyDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApplyDate)
+        </dd>
+
+    </dl>
+    <div class="form-actions no-color">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Back to List", "GetJobsByUser", null, new { @class = "btn btn-default" })
+
+    </div>
+
+
+</div>
+

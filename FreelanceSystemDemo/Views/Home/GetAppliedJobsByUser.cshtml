@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<FreelanceSystemDemo.Models.ApplyForJob>
 
 @{
-    ViewBag.Title = "GetJobsByUser";
+    ViewBag.Title = "GetAppliedJobsByUser";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2 class="col-md-12">All Jobs That You Applied For</h2>
 
-<table class="table col-md-12">
+<table class="table col-md-12 table-bordered table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.job.JobTitle)
@@ -34,9 +34,9 @@
                 @Html.DisplayFor(modelItem => item.ApplyDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "DetailsOfJob", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-dark" }) 
+                @Html.ActionLink("Details", "DetailsOfJob", new { id = item.Id }, new { @class = "btn btn-default btn-dark" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-dark" })
             </td>
         </tr>
     }
