@@ -28,7 +28,11 @@ namespace FreelanceSystemDemo.Models
 
         [DisplayName("Number Of Proposal")]
         public int NumberOfProposal { get; set; }
-        
+
+        [DisplayName("Post Status")]
+        public bool PostStatus { get; set; }
+
+
         // one to many Relation
         [DisplayName("Job Type")]
         public int CategoryId { get; set; }

@@ -1,0 +1,161 @@
+﻿@model WebApplication1.Models.EditProfileViewModel
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div style="width:inherit">
+    <h4>Edit Profile</h4>
+    <h6 class="alert alert-danger" background-color:#ac2935 style="width:40%">@ViewBag.Message</h6>
+    @using (Html.BeginForm("EditProfile", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.UserImage)
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserFirstName, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.UserFirstName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserFirstName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserLastName, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.UserLastName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UserLastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserImage, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    <img src="~/Uploads/@Html.DisplayFor(model=>model.UserImage)"
+                         class="thumbnail"
+                         style="width:200px; height:200px;" />
+                    @Html.ValidationMessageFor(model => model.UserImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UserImage, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    <input type="file" name="upload" id="myImage" />
+                    @Html.ValidationMessageFor(model => model.UserImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CurrentPassword, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.CurrentPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CurrentPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NewPassword, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfirmNewPassword, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.ConfirmNewPassword, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmNewPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
+                <span id="View-err">
+
+                </span>
+            </div>
+
+            <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
+                <span id="View-err">
+
+                </span>
+            </div>
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Save" class="btn btn-default" id="save" />
+                <a href="~/Home/Index" class="btn btn-default btn-danger">Back to Home</a>
+            </div>
+
+
+        </div>
+    }
+
+</div>
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                //Check if the input is Empty
+                if ($("#myImage").val() == "") {
+                    $("#error-div").fadeIn();
+                    $("#View-err").append("Please choose photo");
+                    return false;
+                }
+                if ($("#myImage").val() != "") {
+                    //Check if the Image extension is valid
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtensions = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(extensionImg, validExtensions) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose photo with valid extension");
+                        return false;
+                    }
+                    //Check if the Image Size is valid (2 mb)
+                    var myFileSize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myFileSize > 2) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose a photo with size lessa than 2 MB");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}

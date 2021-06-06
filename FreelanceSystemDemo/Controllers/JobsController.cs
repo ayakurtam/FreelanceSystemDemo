@@ -55,7 +55,7 @@ namespace FreelanceSystemDemo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Job job , HttpPostedFileBase upload)
+        public ActionResult Create(Job job, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -92,12 +92,10 @@ namespace FreelanceSystemDemo.Controllers
             return View(job);
         }
 
-        // POST: Jobs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Job job , HttpPostedFileBase upload)
+        public ActionResult Edit(Job job, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
@@ -115,9 +113,9 @@ namespace FreelanceSystemDemo.Controllers
 
                 }
 
+                job.PublishDate = DateTime.Now;
 
-                
-                
+
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -126,6 +124,30 @@ namespace FreelanceSystemDemo.Controllers
             ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", job.CategoryId);
             return View(job);
         }
+
+
+
+
+
+
+        [Authorize(Roles = "Admins")]
+        public ActionResult Approve(int? id)
+        {
+
+            var jobs = db.Jobs.Include(j => j.Category);
+            ViewBag.JobType = new SelectList(new[] { "fixed", "hourly" });
+            if (id != null)
+            {
+                Job job = db.Jobs.Find(id);
+                job.PostStatus = true;
+                db.Entry(job).State = EntityState.Modified;
+                db.SaveChanges();
+                
+            }
+            return View(jobs.ToList());
+        }
+
+
 
         // GET: Jobs/Delete/5
         public ActionResult Delete(int? id)

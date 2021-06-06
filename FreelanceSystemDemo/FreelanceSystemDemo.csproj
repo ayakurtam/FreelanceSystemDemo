@@ -212,6 +212,14 @@
     <Compile Include="Migrations\202106031253423_EditJobModel.Designer.cs">
       <DependentUpon>202106031253423_EditJobModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106031748173_AddImageToUser.cs" />
+    <Compile Include="Migrations\202106031748173_AddImageToUser.Designer.cs">
+      <DependentUpon>202106031748173_AddImageToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106031902337_AddJobStatus.cs" />
+    <Compile Include="Migrations\202106031902337_AddJobStatus.Designer.cs">
+      <DependentUpon>202106031902337_AddJobStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplyForJob.cs" />
@@ -309,6 +317,8 @@
     <Content Include="Views\Home\GetProposalJobsByPublisher.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\GetPublishedJobsByUser.cshtml" />
+    <Content Include="Views\Jobs\Approve.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -344,6 +354,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106031253423_EditJobModel.resx">
       <DependentUpon>202106031253423_EditJobModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106031748173_AddImageToUser.resx">
+      <DependentUpon>202106031748173_AddImageToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106031902337_AddJobStatus.resx">
+      <DependentUpon>202106031902337_AddJobStatus.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

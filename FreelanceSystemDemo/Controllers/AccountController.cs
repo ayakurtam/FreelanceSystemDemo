@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -150,14 +151,19 @@ namespace WebApplication1.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModel model, HttpPostedFileBase upload)
         {
             ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(), "Name", "Name");
 
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.UserName, UserFirstName = model.UserFirstName, UserLastName = model.UserLastName, PhoneNumber = model.PhoneNumber, UserType = model.UserType, Email = model.Email};
+                var user = new ApplicationUser { UserName = model.UserName, UserFirstName = model.UserFirstName, UserLastName = model.UserLastName, PhoneNumber = model.PhoneNumber, UserImage = model.UserImage, UserType = model.UserType, Email = model.Email};
                 var result = await UserManager.CreateAsync(user, model.Password);
+                
+                string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                upload.SaveAs(path); // file is saved on server only
+                user.UserImage = upload.FileName; // assign the imaged to the variable JobImage
+                
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -176,6 +182,71 @@ namespace WebApplication1.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+        public ActionResult EditProfile()
+        {
+            var UserID = User.Identity.GetUserId();
+            var user = db.Users.Where(a => a.Id == UserID).SingleOrDefault();
+            EditProfileViewModel profile = new EditProfileViewModel();
+            profile.UserName = user.UserName;
+            profile.UserFirstName = user.UserFirstName;
+            profile.UserLastName = user.UserLastName;
+            profile.PhoneNumber = user.PhoneNumber;
+            profile.UserImage = user.UserImage;
+            profile.Email = user.Email;
+            return View(profile);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditProfile(EditProfileViewModel profile, HttpPostedFileBase upload)
+        {
+            var UserID = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(a => a.Id == UserID).SingleOrDefault();
+
+            if(!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+            {
+                ViewBag.Message = "The Current Password In incorrect";
+            }
+            else if(profile.NewPassword.Equals(profile.ConfirmNewPassword))
+            {
+
+                string oldPath = Path.Combine(Server.MapPath("~/Uploads"), profile.UserImage);
+                if (upload != null)
+                {
+                    System.IO.File.Delete(oldPath); // to delete the old photo
+                    string path = Path.Combine(Server.MapPath("~/Uploads"), upload.FileName);
+                    upload.SaveAs(path); // file is saved on server only
+                    profile.UserImage = upload.FileName; // assign the image to the variable JobImage
+
+                }
+
+                var newPasswordHash = UserManager.PasswordHasher.HashPassword(profile.NewPassword);
+                CurrentUser.UserName = profile.UserName;
+                CurrentUser.UserFirstName = profile.UserFirstName;
+                CurrentUser.UserLastName = profile.UserLastName;
+                CurrentUser.PhoneNumber = profile.PhoneNumber;
+                CurrentUser.UserImage = profile.UserImage;
+                CurrentUser.Email = profile.Email;
+                CurrentUser.PasswordHash = newPasswordHash;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Your Profile Updated Successfuly";
+            }
+            return View(profile);
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         //
         // GET: /Account/ConfirmEmail

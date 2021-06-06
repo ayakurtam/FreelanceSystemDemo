@@ -12,83 +12,83 @@
     {
         @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.JobImage)
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.JobImage)
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.JobContent, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    <input type="file" name="upload" id="myImage" />
+                    @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.DropDownList("JobType", null, new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.JobBudget, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.EditorFor(model => model.JobBudget, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.JobBudget, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NumberOfProposal, htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    <h6>0</h6>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md" })
+                <div class="col-md">
+                    @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
+                <span id="View-err">
+
+                </span>
+            </div>
+
+
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Create" class="btn btn-default" id="save" /> |
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
+            </div>
+
+
+
+
         </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobContent, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            @Html.EditorFor(model => model.JobContent, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.JobContent, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            <input type="file" name="upload" id="myImage" />
-            @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobType, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            @Html.DropDownList("JobType", null, new { @class = "form-control" })
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.JobBudget, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            @Html.EditorFor(model => model.JobBudget, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.JobBudget, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.NumberOfProposal, htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-           <h6>0</h6>
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md" })
-        <div class="col-md">
-            @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-
-    <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
-        <span id="View-err">
-
-        </span>
-    </div>
-
-
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Create" class="btn btn-default" id="save" /> |
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })
-    </div>
-
-
-
-
-</div>
     }
 
 </div>

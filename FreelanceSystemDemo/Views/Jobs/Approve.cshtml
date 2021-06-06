@@ -1,12 +1,18 @@
 ﻿@model IEnumerable<FreelanceSystemDemo.Models.Job>
 
+@*@using WebApplication1.Models;
+    @using Microsoft.AspNet.Identity*@
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Approve";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+
 @if (Request.IsAuthenticated)
 {
+    @* var db = new ApplicationDbContext();
+        var UserID = User.Identity.GetUserId();
+        var CurrentUser = db.Users.Where(a => a.Id == UserID).SingleOrDefault();*@
 
     <div>
         <h2>Jobs List</h2>
@@ -39,7 +45,7 @@
 
             @foreach (var item in Model)
             {
-                if (item.PostStatus)
+                if (!item.PostStatus)
                 {
                     <tr style="">
                         <td>
@@ -67,14 +73,19 @@
                         <td>
                             <div style="display:grid;">
 
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
-                                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
-                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
+                                <div>
+                                    @Html.ActionLink("Approve", "Approve", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
+
+                                </div>
+
                             </div>
+
 
                         </td>
                     </tr>
                 }
+
             }
 
         </table>
@@ -86,5 +97,4 @@
 
 
     </div>
-
 }

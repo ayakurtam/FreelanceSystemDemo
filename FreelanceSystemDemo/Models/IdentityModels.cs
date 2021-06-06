@@ -17,6 +17,8 @@ namespace WebApplication1.Models
 
         public string UserLastName { get; set; }
 
+        public string UserImage { get; set; }
+
         public virtual ICollection<Job> Jobs { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

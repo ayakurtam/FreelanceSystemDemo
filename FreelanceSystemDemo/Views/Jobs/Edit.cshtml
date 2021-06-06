@@ -48,7 +48,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.JobImage, htmlAttributes: new { @class = "control-label col-md" })
                 <div class="col-md">
-                    <input type="file" name="upload" id="myImage" />
+                    <input type="file" name="upload" />
                     @Html.ValidationMessageFor(model => model.JobImage, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -92,7 +92,7 @@
 
 
             <div class="form-actions no-color">
-                <input type="submit" value="Save" class="btn btn-default" id="save" />
+                <input type="submit" value="Save" class="btn btn-default" />
                 @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default btn-danger" })
             </div>
 
@@ -102,37 +102,3 @@
 </div>
 
 
-@section scripts{
-
-    <script>
-        $(function () {
-            $("#save").click(function () {
-                //Check if the input is Empty
-                if ($("#myImage").val() == "") {
-                    $("#error-div").fadeIn();
-                    $("#View-err").append("Please choose photo");
-                    return false;
-                }
-
-                if ($("#myImage").val() != "") {
-                    //Check if the Image extension is valid
-                    var filename = document.getElementById("myImage").value;
-                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
-                    var validExtensions = ['jpg', 'png', 'gif', 'bmp'];
-                    if ($.inArray(extensionImg, validExtensions) == -1) {
-                        $("#error-div").fadeIn();
-                        $("#View-err").append("Choose photo with valid extension");
-                        return false;
-                    }
-                    //Check if the Image Size is valid (2 mb)
-                    var myFileSize = document.getElementById("myImage").files[0].size / 1024 / 1024;
-                    if (myFileSize > 2) {
-                        $("#error-div").fadeIn();
-                        $("#View-err").append("Choose a photo with size lessa than 2 MB");
-                        return false;
-                    }
-                }
-            });
-        });
-    </script>
-}

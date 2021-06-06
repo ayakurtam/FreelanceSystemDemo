@@ -7,13 +7,13 @@
 
 <div class="col-md-8">
     <h2>@ViewBag.Title</h2>
-    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", role = "form" }))
     {
         @Html.AntiForgeryToken()
         <h4>Create a new account</h4>
         <hr />
         @Html.ValidationSummary("", new { @class = "text-danger" })
-
+        @Html.HiddenFor(model => model.UserImage)
         <!-- User Name -->
         <div class="form-group">
             @Html.LabelFor(m => m.UserName, new { @class = "col-md control-label" })
@@ -44,6 +44,13 @@
             </div>
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserImage, htmlAttributes: new { @class = "control-label col-md" })
+            <div class="col-md">
+                <input type="file" name="upload" id="userImage" />
+                @Html.ValidationMessageFor(model => model.UserImage, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
 
         <!-- DropDown Role List-->
@@ -79,11 +86,60 @@
             </div>
         </div>
 
+
+
+        <div class="alert alert-danger" id="error-div" style="display:none; background-color:#ac2935">
+            <span id="View-err">
+
+            </span>
+        </div>
+
         <!-- Submit Button -->
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" class="btn btn-default btn-dark" value="Register" />
+                <input type="submit" class="btn btn-default btn-dark" value="Register" id="save" />
             </div>
         </div>
     }
 </div>
+
+
+
+
+
+
+
+@section scripts{
+
+    <script>
+        $(function () {
+            $("#save").click(function () {
+                //Check if the input is Empty
+                if ($("#myImage").val() == "") {
+                    $("#error-div").fadeIn();
+                    $("#View-err").append("Please choose photo");
+                    return false;
+                }
+
+                if ($("#myImage").val() != "") {
+                    //Check if the Image extension is valid
+                    var filename = document.getElementById("myImage").value;
+                    var extensionImg = filename.substr(filename.lastIndexOf('.') + 1);
+                    var validExtensions = ['jpg', 'png', 'gif', 'bmp'];
+                    if ($.inArray(extensionImg, validExtensions) == -1) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose photo with valid extension");
+                        return false;
+                    }
+                    //Check if the Image Size is valid (2 mb)
+                    var myFileSize = document.getElementById("myImage").files[0].size / 1024 / 1024;
+                    if (myFileSize > 2) {
+                        $("#error-div").fadeIn();
+                        $("#View-err").append("Choose a photo with size lessa than 2 MB");
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+}
