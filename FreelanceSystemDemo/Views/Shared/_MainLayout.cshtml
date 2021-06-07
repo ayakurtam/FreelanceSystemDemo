@@ -4,6 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/Style.css" rel="stylesheet" />
 </head>
@@ -31,10 +32,9 @@
                     </li>
                     @if (!Request.IsAuthenticated)
                     {
-                        <li>
-                            @Html.Partial("_Login")
-                        </li>
-                    }
+        <li>
+            @Html.Partial("_Login")
+        </li>}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle btn btn-dark" style="font-size:16px; color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Do You Have A Question ?
@@ -48,24 +48,22 @@
 
                 </ul>
 
-                
-                    @using (Html.BeginForm("Search", "Home", FormMethod.Post))
-                    {
-                        <div class="d-flex">
 
-                        
-                        <input class="form-control me-2" name="searchName" id="searchName" style="font-size: 16px;" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-default btn-dark" style="font-size: 16px; margin-left:5px" id="searchbtn" type="submit">Search</button>
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post))
+                {
+    <div class="d-flex">
 
-                        </div>
-                    }
-                
+
+        <input class="form-control me-2" name="searchName" id="searchName" style="font-size: 16px;" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-default btn-dark" style="font-size: 16px; margin-left:5px" id="searchbtn" type="submit">Search</button>
+
+    </div>}
+
 
 
                 @if (Request.IsAuthenticated)
                 {
-                    @Html.Partial("_Login")
-                }
+    @Html.Partial("_Login")}
             </div>
         </div>
     </nav>
@@ -138,6 +136,27 @@
     <script src="~/Scripts/popper.min.js"></script>
 
     <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- rating.js file -->
+    <script src="js/addons/rating.js"></script>
+    <script>
+        // Rating Initialization
+        $(document).ready(function () {
+            $('#rateMe4').mdbRate();
+        });
+    </script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

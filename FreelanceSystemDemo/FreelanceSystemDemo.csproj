@@ -146,6 +146,7 @@
     <Content Include="Content\font\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font\index.html" />
     <Content Include="Content\NavbarStyle.css" />
+    <Content Include="Content\StarStyle.css" />
     <Content Include="Content\Style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -171,12 +172,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminUsersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,18 +217,28 @@
     <Compile Include="Migrations\202106031748173_AddImageToUser.Designer.cs">
       <DependentUpon>202106031748173_AddImageToUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106031902337_AddJobStatus.cs" />
-    <Compile Include="Migrations\202106031902337_AddJobStatus.Designer.cs">
-      <DependentUpon>202106031902337_AddJobStatus.cs</DependentUpon>
+    <Compile Include="Migrations\202106070721186_test.cs" />
+    <Compile Include="Migrations\202106070721186_test.Designer.cs">
+      <DependentUpon>202106070721186_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106070725499_test1.cs" />
+    <Compile Include="Migrations\202106070725499_test1.Designer.cs">
+      <DependentUpon>202106070725499_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202106070731516_saveJob.cs" />
+    <Compile Include="Migrations\202106070731516_saveJob.Designer.cs">
+      <DependentUpon>202106070731516_saveJob.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplyForJob.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\DBContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\UsersViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -269,7 +280,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_MainLayout.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -319,6 +329,10 @@
     <Content Include="Views\Home\GetPublishedJobsByUser.cshtml" />
     <Content Include="Views\Jobs\Approve.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
+    <Content Include="Views\AdminUsers\Index.cshtml" />
+    <Content Include="Views\AdminUsers\Details.cshtml" />
+    <Content Include="Views\AdminUsers\Create.cshtml" />
+    <Content Include="Views\AdminUsers\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -329,6 +343,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploads\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202105301027333_InitialCreate.resx">
@@ -358,8 +373,14 @@
     <EmbeddedResource Include="Migrations\202106031748173_AddImageToUser.resx">
       <DependentUpon>202106031748173_AddImageToUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106031902337_AddJobStatus.resx">
-      <DependentUpon>202106031902337_AddJobStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106070721186_test.resx">
+      <DependentUpon>202106070721186_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106070725499_test1.resx">
+      <DependentUpon>202106070725499_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106070731516_saveJob.resx">
+      <DependentUpon>202106070731516_saveJob.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

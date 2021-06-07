@@ -76,6 +76,9 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+   
+
+
         [Authorize]
         public ActionResult GetProposalJobsByPublisher()
         {
@@ -91,10 +94,20 @@ namespace WebApplication1.Controllers
             return View(Jobs.ToList());
         }
 
+        public ActionResult Approve(int id)
+        {
 
+            var job = db.Jobs.Find(id);
+            if (job == null)
+            {
+                return HttpNotFound();
+            }
 
-
-
+            db.Jobs.Remove(job);
+            db.SaveChanges();
+            return RedirectToAction("GetPublishedJobsByUser");
+            
+        }
 
 
 
@@ -148,7 +161,7 @@ namespace WebApplication1.Controllers
                 db.Entry(job).State = EntityState.Modified;
 
                 db.SaveChanges();
-                return RedirectToAction("GetJobsByUser");
+                return RedirectToAction("GetPublishedJobsByUser");
             }
             return View(job);
         }
@@ -173,7 +186,7 @@ namespace WebApplication1.Controllers
             var myjob = db.ApplyForJobs.Find(job.Id);
             db.ApplyForJobs.Remove(myjob);
             db.SaveChanges();
-            return RedirectToAction("GetJobsByUser");
+            return RedirectToAction("GetPublishedJobsByUser");
 
         }
 

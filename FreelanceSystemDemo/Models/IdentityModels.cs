@@ -19,7 +19,10 @@ namespace WebApplication1.Models
 
         public string UserImage { get; set; }
 
+        public int savedJobID { get; set; }
+
         public virtual ICollection<Job> Jobs { get; set; }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType

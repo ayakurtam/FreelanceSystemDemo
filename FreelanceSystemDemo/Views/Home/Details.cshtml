@@ -1,9 +1,7 @@
 ﻿@model FreelanceSystemDemo.Models.Job
 
-@{
-    ViewBag.Title = "Job Details";
-    Layout = "~/Views/Shared/_MainLayout.cshtml";
-}
+@{ ViewBag.Title = "Job Details";
+                Layout = "~/Views/Shared/_MainLayout.cshtml"; }
 
 <div class="col-md-12">
     <h4>@ViewBag.Title</h4>
@@ -69,9 +67,25 @@
 
     </dl>
     <div class="form-actions no-color">
-        @Html.ActionLink("Apply to this", "Apply", new { id = Model.Id }, new { @class = "btn btn-danger" }) |
-        @Html.ActionLink("Back to Home", "Index",null, new { @class = "btn btn-default" })
+        @Html.ActionLink("Apply to this", "Apply", new { id = Model.Id }, new { @class = "btn btn-danger" })
+        <a class="btn btn-default btn-dark" style="font-size: 16px; margin-left:5px" href="#">Save</a>
+        @Html.ActionLink("Back to Home", "Index", null, new { @class = "btn btn-default" })
     </div>
+    <link href="~/Content/StarStyle.css" rel="stylesheet" />
 
+    <div class="container">
+        <div class="star-widget">
+            <input type="radio" name="rate" id="rate-5" />
+            <label for="rate-5" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-4" />
+            <label for="rate-4" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-3" />
+            <label for="rate-3" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-2" />
+            <label for="rate-2" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-1" />
+            <label for="rate-1" class="fas fa-star"></label>
+        </div>
+    </div>
 
 </div>

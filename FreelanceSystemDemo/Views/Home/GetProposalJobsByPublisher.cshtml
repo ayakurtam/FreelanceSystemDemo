@@ -21,6 +21,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.ApplyDate)
             </th>
+            <th>
+                Operations
+            </th>
         </tr>
 
         @foreach (var item in Model)
@@ -38,9 +41,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.ApplyDate)
                 </td>
+                <td>
+                    <div style="display:grid;">
+                        @Html.ActionLink("Approve", "Approve", new { id = item.JobId }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default btn-dark", @style = "font-size: 20px;" })
+                    </div>
+                </td>
             </tr>
         }
-
+        
     </table>
     <div class="form-actions no-color">
         @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-default" })

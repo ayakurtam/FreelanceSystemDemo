@@ -7,13 +7,13 @@ namespace FreelanceSystemDemo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddJobStatus : IMigrationMetadata
+    public sealed partial class saveJob : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddJobStatus));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(saveJob));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106031902337_AddJobStatus"; }
+            get { return "202106070731516_saveJob"; }
         }
         
         string IMigrationMetadata.Source

@@ -16,14 +16,14 @@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle btn btn-dark" style="font-size:16px; height:40px; color:white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                   Hello: @CurrentUser.UserName
+                   Hello:@CurrentUser.UserName
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     @if (CurrentUser.UserType == "Admins")
                     {
                         <li><a class="dropdown-item" href="~/Account/EditProfile">Profile</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Users Page</a></li>
+                        <li><a class="dropdown-item" href="~/AdminUsers">Users Page</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="~/Jobs/Index">Posts Page</a></li>
                         <li><hr class="dropdown-divider"></li>
